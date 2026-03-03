@@ -34,22 +34,22 @@ module.exports = function(eleventyConfig) {
 
   // ── COLLECTIONS ──
   eleventyConfig.addCollection("products", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/products/*.md")
+    return collectionApi.getFilteredByGlob(["src/products/*.md", "src/products/**/*.md"])
       .sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
   });
 
   eleventyConfig.addCollection("laptops", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/products/*.md")
+    return collectionApi.getFilteredByGlob(["src/products/*.md", "src/products/**/*.md"])
       .filter(item => item.data.kategori === "laptop");
   });
 
   eleventyConfig.addCollection("cctv", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/products/*.md")
+    return collectionApi.getFilteredByGlob(["src/products/*.md", "src/products/**/*.md"])
       .filter(item => item.data.kategori === "cctv");
   });
 
   eleventyConfig.addCollection("jaringan", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/products/*.md")
+    return collectionApi.getFilteredByGlob(["src/products/*.md", "src/products/**/*.md"])
       .filter(item => item.data.kategori === "jaringan");
   });
 
