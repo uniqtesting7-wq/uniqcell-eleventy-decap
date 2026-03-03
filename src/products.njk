@@ -1,11 +1,9 @@
 ---
 layout: base.njk
 title: "Katalog Produk"
-description: "Katalog lengkap laptop, CCTV, dan perangkat jaringan UNIQ CELL. Filter kategori, cari produk, harga terbaik, garansi resmi."
+description: "Katalog lengkap laptop, CCTV, dan perangkat jaringan UNIQ CELL."
 permalink: /products/
 ---
-
-{% block content %}
 
 <!-- PAGE HEADER -->
 <div class="page-header">
@@ -18,26 +16,22 @@ permalink: /products/
     <h1>Katalog Produk</h1>
     <p>Temukan laptop, CCTV, dan perangkat jaringan berkualitas terbaik untuk kebutuhan Anda.</p>
     <div class="header-stats">
-      <div class="hstat"><i class="bi bi-box-seam"></i> <span>{{ collections.products | length }} Produk Tersedia</span></div>
+      <div class="hstat"><i class="bi bi-box-seam"></i> <span id="totalProduk">{{ collections.products | length }} Produk Tersedia</span></div>
       <div class="hstat"><i class="bi bi-shield-check"></i> Garansi Resmi</div>
     </div>
   </div>
 </div>
 
-<!-- MAIN LAYOUT -->
 <div class="main-layout">
-
-  <!-- Mobile filter toggle -->
   <button class="mob-filter-toggle" id="mobFilterToggle">
     <span><i class="bi bi-funnel"></i> &nbsp;Filter &amp; Urutkan</span>
     <i class="bi bi-chevron-down" id="mobFilterIcon"></i>
   </button>
 
-  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-card">
       <div class="sidebar-title">Kategori</div>
-      <div class="cat-list" id="catList">
+      <div class="cat-list">
         <div class="cat-item active" data-cat="all">
           <div class="cat-left"><i class="bi bi-grid-3x3-gap"></i> Semua Produk</div>
           <span class="cat-count" id="countAll">{{ collections.products | length }}</span>
@@ -56,35 +50,31 @@ permalink: /products/
         </div>
       </div>
     </div>
-
     <div class="sidebar-card">
       <div class="sidebar-title">Rentang Harga</div>
       <div class="price-options">
         <label class="price-opt"><input type="radio" name="price" value="all" checked> Semua Harga</label>
         <label class="price-opt"><input type="radio" name="price" value="0-1000000"> Di bawah Rp 1 jt</label>
-        <label class="price-opt"><input type="radio" name="price" value="1000000-5000000"> Rp 1 jt – 5 jt</label>
-        <label class="price-opt"><input type="radio" name="price" value="5000000-20000000"> Rp 5 jt – 20 jt</label>
+        <label class="price-opt"><input type="radio" name="price" value="1000000-5000000"> Rp 1 jt - 5 jt</label>
+        <label class="price-opt"><input type="radio" name="price" value="5000000-20000000"> Rp 5 jt - 20 jt</label>
         <label class="price-opt"><input type="radio" name="price" value="20000000-999999999"> Di atas Rp 20 jt</label>
       </div>
     </div>
-
     <div class="sidebar-card">
       <div class="sidebar-title">Urutkan</div>
       <select class="sort-select" id="sortSelect">
         <option value="default">Default</option>
         <option value="price-asc">Harga: Termurah</option>
         <option value="price-desc">Harga: Termahal</option>
-        <option value="name-asc">Nama: A–Z</option>
-        <option value="name-desc">Nama: Z–A</option>
+        <option value="name-asc">Nama: A-Z</option>
+        <option value="name-desc">Nama: Z-A</option>
       </select>
     </div>
-
     <button class="btn-reset" id="resetBtn" style="display:none">
       <i class="bi bi-x-circle"></i> Reset Semua Filter
     </button>
   </aside>
 
-  <!-- CONTENT AREA -->
   <div class="content-area">
     <div class="toolbar">
       <div class="result-info" id="resultInfo">
@@ -102,28 +92,16 @@ permalink: /products/
         </div>
       </div>
     </div>
-
     <div class="active-filters" id="activeFilters"></div>
     <div class="prod-grid" id="prodCatalogGrid"></div>
   </div>
 </div>
 
-{% endblock %}
-
-{% block scripts %}
 <script>
-// Inject all products as JS data for client-side filtering
 window.CATALOG_PRODUCTS = [
   {% for product in collections.products %}
-  {
-    slug: "{{ product.data.slug }}",
-    name: {{ product.data.title | dump | safe }},
-    kategori: "{{ product.data.kategori }}",
-    img: "{{ product.data.img }}",
-    spec: {{ product.data.spec | dump | safe }},
-    price: {{ product.data.price }}
-  }{% if not loop.last %},{% endif %}
+  {% set p = product.data %}
+  { slug: "{{ p.slug }}", name: "{{ p.title | replace('"', '\\\"')}}", kategori: "{{ p.kategori }}", img: "{{ p.img }}", spec: "{{ p.spec | replace('"', '\\\"')}}", price: {{ p.price }} }{% if not loop.last %},{% endif %}
   {% endfor %}
 ];
 </script>
-{% endblock %}

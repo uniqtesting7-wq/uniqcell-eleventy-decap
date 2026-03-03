@@ -4,8 +4,6 @@ title: "Toko Laptop, CCTV & Peralatan Jaringan Terpercaya"
 description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat jaringan berkualitas. Harga bersaing, garansi resmi."
 ---
 
-{% block content %}
-
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-bg-img"></div>
@@ -61,35 +59,34 @@ description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat
       </a>
     </div>
 
-    <div class="prod-grid" id="prodGrid">
+    <div class="prod-grid">
       {% for product in collections.products | slice(0, 9) %}
-      <div class="prod-card home-prod-card observe-fade" data-cat="{{ product.data.kategori }}" style="animation-delay: {{ loop.index0 * 0.06 }}s">
-        <div class="prod-img" style="cursor:pointer" onclick="window.location='/products/{{ product.data.slug }}/'">
-          <img src="{{ product.data.img }}" alt="{{ product.data.title }}" loading="lazy">
-          <div class="prod-cat-badge {{ product.data.kategori }}">
-            <i class="bi {{ product.data.kategori | categoryIcon }}"></i>
-            {{ product.data.kategori | categoryLabel }}
+      {% set p = product.data %}
+      <div class="prod-card home-prod-card" data-cat="{{ p.kategori }}">
+        <div class="prod-img" onclick="window.location='/products/{{ p.slug }}/'">
+          <img src="{{ p.img }}" alt="{{ p.title }}" loading="lazy">
+          <div class="prod-cat-badge {{ p.kategori }}">
+            <i class="bi {{ p.kategori | categoryIcon }}"></i>
+            {{ p.kategori | categoryLabel }}
           </div>
         </div>
         <div class="prod-body">
-          <div class="prod-name" style="cursor:pointer" onclick="window.location='/products/{{ product.data.slug }}/'">
-            {{ product.data.title }}
-          </div>
-          <div class="prod-spec">{{ product.data.spec }}</div>
-          <div class="prod-price">{{ product.data.price | formatRupiah }}</div>
-          <a class="btn-detail-link" href="/products/{{ product.data.slug }}/">
+          <div class="prod-name" onclick="window.location='/products/{{ p.slug }}/'">{{ p.title }}</div>
+          <div class="prod-spec">{{ p.spec }}</div>
+          <div class="prod-price">{{ p.price | formatRupiah }}</div>
+          <a class="btn-detail-link" href="/products/{{ p.slug }}/">
             <i class="bi bi-eye"></i> Lihat Detail
           </a>
           <div class="prod-actions">
             <button class="btn-addcart"
-              data-id="{{ product.data.slug }}"
-              data-name="{{ product.data.title }}"
-              data-price="{{ product.data.price }}"
-              data-img="{{ product.data.img }}">
+              data-id="{{ p.slug }}"
+              data-name="{{ p.title }}"
+              data-price="{{ p.price }}"
+              data-img="{{ p.img }}">
               <i class="bi bi-bag-plus"></i> Keranjang
             </button>
             <a class="btn-wa-card" target="_blank"
-              href="https://wa.me/{{ site.waNumber }}?text={{ ('Halo, saya ingin info produk:\n*' + product.data.title + '*\nHarga: ' + (product.data.price | formatRupiah) + '\n\nTerima kasih.') | urlencode }}">
+              href="https://wa.me/{{ site.waNumber }}?text=Halo%2C%20saya%20ingin%20info%3A%0A*{{ p.title | urlencode }}*%0AHarga%3A%20{{ p.price | formatRupiah | urlencode }}">
               <i class="bi bi-whatsapp"></i> WA
             </a>
           </div>
@@ -104,17 +101,17 @@ description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat
 <section id="layanan" class="layanan-section">
   <div class="wrap">
     <div class="layanan-grid">
-      <div class="layanan-item observe-fade">
+      <div class="layanan-item">
         <div class="layanan-icon"><i class="bi bi-shield-check"></i></div>
         <div class="layanan-title">Garansi Resmi</div>
         <div class="layanan-desc">Semua produk bergaransi resmi dari distributor atau pabrikan terpercaya.</div>
       </div>
-      <div class="layanan-item observe-fade">
+      <div class="layanan-item">
         <div class="layanan-icon"><i class="bi bi-headset"></i></div>
         <div class="layanan-title">Support 7 Hari</div>
         <div class="layanan-desc">Tim kami siap membantu konsultasi teknis setiap hari mulai pukul 08–21.</div>
       </div>
-      <div class="layanan-item observe-fade">
+      <div class="layanan-item">
         <div class="layanan-icon"><i class="bi bi-tools"></i></div>
         <div class="layanan-title">Instalasi &amp; Setting</div>
         <div class="layanan-desc">Layanan instalasi CCTV dan konfigurasi jaringan oleh teknisi berpengalaman.</div>
@@ -132,21 +129,21 @@ description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat
         <h2 class="section-h2" style="margin-bottom:12px;">Ada yang bisa<br>kami bantu?</h2>
         <p class="kontak-desc">Konsultasi produk, tanya harga, atau request penawaran khusus — tim kami siap melayani.</p>
         <div class="kontak-list">
-          <div class="kontak-item observe-fade">
+          <div class="kontak-item">
             <div class="kontak-item-icon"><i class="bi bi-telephone-fill"></i></div>
             <div class="kontak-item-text">
               <small>Telepon / WhatsApp</small>
               <span>{{ site.phone }}</span>
             </div>
           </div>
-          <div class="kontak-item observe-fade">
+          <div class="kontak-item">
             <div class="kontak-item-icon"><i class="bi bi-envelope-fill"></i></div>
             <div class="kontak-item-text">
               <small>Email</small>
               <span>{{ site.email }}</span>
             </div>
           </div>
-          <div class="kontak-item observe-fade">
+          <div class="kontak-item">
             <div class="kontak-item-icon"><i class="bi bi-geo-alt-fill"></i></div>
             <div class="kontak-item-text">
               <small>Alamat</small>
@@ -156,15 +153,15 @@ description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat
         </div>
       </div>
       <div class="kontak-cta">
-        <a href="https://wa.me/{{ site.waNumber }}?text={{ 'Halo saya ingin konsultasi produk UNIQ CELL' | urlencode }}"
-           target="_blank" class="btn-wa-big-full observe-fade">
+        <a href="https://wa.me/{{ site.waNumber }}?text=Halo%20saya%20ingin%20konsultasi%20produk%20UNIQ%20CELL"
+           target="_blank" class="btn-wa-big-full">
           <i class="bi bi-whatsapp"></i>
           <div>
             <small>Klik untuk chat langsung</small>
             <strong>Chat WhatsApp Sekarang</strong>
           </div>
         </a>
-        <a href="mailto:{{ site.email }}" class="btn-outline-navy observe-fade">
+        <a href="mailto:{{ site.email }}" class="btn-outline-navy">
           <i class="bi bi-envelope"></i> Kirim Email
         </a>
       </div>
@@ -172,11 +169,7 @@ description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat
   </div>
 </section>
 
-{% endblock %}
-
-{% block scripts %}
 <script>
-// Bind add-to-cart on home page
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.btn-addcart').forEach(b => {
     b.addEventListener('click', () => {
@@ -185,4 +178,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
-{% endblock %}
