@@ -1,0 +1,28 @@
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <i class="bi bi-laptop-fill"></i> {{ site.siteName }}
+    </a>
+    <ul class="nav-menu">
+      <li><a href="/" {% if page.url == "/" %}class="active"{% endif %}>Home</a></li>
+      <li><a href="/products/" {% if "/products" in page.url %}class="active"{% endif %}>Produk</a></li>
+      <li><a href="/#layanan">Layanan</a></li>
+      <li><a href="/#kontak">Kontak</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-cart" id="cartToggle">
+        <i class="bi bi-bag"></i> Keranjang
+        <span class="cart-dot" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mob-nav" id="mobNav">
+    <a href="/">Home</a>
+    <a href="/products/">Katalog Produk</a>
+    <a href="/#layanan">Layanan</a>
+    <a href="/#kontak">Kontak</a>
+  </div>
+</nav>

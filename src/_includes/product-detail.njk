@@ -1,0 +1,183 @@
+---
+layout: base.njk
+---
+
+{% block content %}
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <a href="/">Home</a>
+    <i class="bi bi-chevron-right" style="font-size:.65rem"></i>
+    <a href="/products/">Produk</a>
+    <i class="bi bi-chevron-right" style="font-size:.65rem"></i>
+    <span>{{ title }}</span>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<section class="detail-section" id="detailRoot">
+  <div class="detail-wrap">
+    <div class="detail-grid">
+
+      <!-- GALLERY -->
+      <div class="gallery fade-in">
+        <div class="gallery-main">
+          <img src="{{ img }}" alt="{{ title }}" id="mainImg">
+          <div class="gallery-cat-badge {{ kategori }}">
+            <i class="bi {{ kategori | categoryIcon }}"></i> {{ kategori | categoryLabel }}
+          </div>
+          <div class="gallery-badge-stok">
+            <i class="bi bi-check-circle-fill"></i> Stok Tersedia
+          </div>
+        </div>
+        <div class="gallery-thumbs" style="display:flex;gap:10px;margin-top:12px">
+          <div class="gallery-thumb active" style="width:72px;height:56px;border-radius:10px;overflow:hidden;border:2px solid var(--navy);cursor:pointer;background:var(--white)">
+            <img src="{{ img }}" alt="{{ title }}" style="width:100%;height:100%;object-fit:cover">
+          </div>
+          <div class="gallery-thumb" style="width:72px;height:56px;border-radius:10px;overflow:hidden;border:2px solid var(--border);cursor:pointer;background:var(--white)">
+            <img src="{{ img }}" alt="{{ title }}" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.4)">
+          </div>
+          <div class="gallery-thumb" style="width:72px;height:56px;border-radius:10px;overflow:hidden;border:2px solid var(--border);cursor:pointer;background:var(--white)">
+            <img src="{{ img }}" alt="{{ title }}" style="width:100%;height:100%;object-fit:cover;filter:brightness(1.15)">
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO -->
+      <div class="prod-info fade-in" style="animation-delay:.15s">
+        <div class="prod-kategori">{{ kategori | categoryLabel }}</div>
+        <h1 class="prod-title">{{ title }}</h1>
+
+        <div class="prod-rating">
+          <div class="stars">
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-half"></i>
+          </div>
+          <span class="rating-text">
+            <span>{{ rating | default(4.8) }}</span> / 5 &nbsp;·&nbsp; {{ ulasan | default(128) }} ulasan
+          </span>
+        </div>
+
+        <div class="prod-price-box">
+          <div class="prod-price-label">Harga</div>
+          <div class="prod-price-detail">{{ price | formatRupiah }}</div>
+          <div class="prod-price-note"><i class="bi bi-info-circle"></i> Belum termasuk ongkir · Harga bisa berubah sewaktu-waktu</div>
+        </div>
+
+        <!-- SPESIFIKASI -->
+        <div class="spec-title">Spesifikasi</div>
+        <table class="spec-table">
+          {% for key, value in specs %}
+          <tr>
+            <td>{{ key }}</td>
+            <td>{{ value }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+
+        <!-- QTY -->
+        <div class="spec-title" style="margin-top:16px">Jumlah</div>
+        <div class="qty-selector">
+          <button class="qty-sel-btn" id="qtyMinus"><i class="bi bi-dash"></i></button>
+          <div class="qty-sel-num" id="qtyNum">1</div>
+          <button class="qty-sel-btn" id="qtyPlus"><i class="bi bi-plus"></i></button>
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="prod-actions-box">
+          <button class="btn-yellow" id="btnAddCart"
+            data-id="{{ slug }}"
+            data-name="{{ title }}"
+            data-price="{{ price }}"
+            data-img="{{ img }}">
+            <i class="bi bi-bag-plus"></i> Tambah ke Keranjang
+          </button>
+          <a class="btn-wa-order"
+            href="https://wa.me/{{ site.waNumber }}?text={{ ('Halo *' + site.siteName + '*, saya ingin info produk:\n*' + title + '*\nHarga: ' + (price | formatRupiah) + '\n\nApakah stok tersedia? Terima kasih.') | urlencode }}"
+            target="_blank">
+            <i class="bi bi-whatsapp"></i> Tanya / Order via WhatsApp
+          </a>
+          <a class="btn-outline-back" href="/products/">
+            <i class="bi bi-arrow-left"></i> Kembali ke Katalog
+          </a>
+        </div>
+
+        <!-- TRUST BADGES -->
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <i class="bi bi-shield-check"></i>
+            <div class="trust-badge-text"><small>Jaminan</small><span>Garansi Resmi</span></div>
+          </div>
+          <div class="trust-badge">
+            <i class="bi bi-headset"></i>
+            <div class="trust-badge-text"><small>Support</small><span>7 Hari / 08–21</span></div>
+          </div>
+          <div class="trust-badge">
+            <i class="bi bi-arrow-counterclockwise"></i>
+            <div class="trust-badge-text"><small>Retur</small><span>7 Hari Retur</span></div>
+          </div>
+          <div class="trust-badge">
+            <i class="bi bi-box-seam"></i>
+            <div class="trust-badge-text"><small>Produk</small><span>100% Original</span></div>
+          </div>
+        </div>
+
+        <!-- SHARE -->
+        <div class="prod-meta-row">
+          <span class="meta-label">Bagikan:</span>
+          <a class="share-btn" href="https://wa.me/?text={{ ('Cek produk ini di ' + site.siteName + ': ' + title + ' - ' + (price | formatRupiah)) | urlencode }}" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a class="share-btn" href="#" title="Copy Link" onclick="navigator.clipboard.writeText(window.location.href);return false"><i class="bi bi-link-45deg"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABS -->
+<section class="tabs-section">
+  <div class="tabs-wrap fade-in" style="animation-delay:.2s">
+    <div class="tabs-nav">
+      <button class="tab-btn active" data-tab="deskripsi">Deskripsi</button>
+      <button class="tab-btn" data-tab="garansi">Garansi &amp; Retur</button>
+      <button class="tab-btn" data-tab="pengiriman">Pengiriman</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-deskripsi">
+      <div class="tab-content">
+        {{ content | safe }}
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-garansi">
+      <div class="tab-content">
+        <h4>Garansi Produk</h4>
+        <ul>
+          <li>Garansi resmi dari distributor / pabrikan — berlaku sesuai ketentuan masing-masing merek.</li>
+          <li>Garansi toko {{ site.siteName }} 7 hari untuk masalah DOA (Dead on Arrival).</li>
+          <li>Kerusakan akibat pemakaian yang tidak sesuai tidak termasuk garansi.</li>
+        </ul>
+        <h4>Kebijakan Retur</h4>
+        <ul>
+          <li>Retur diterima dalam 7 hari sejak barang diterima dengan kondisi masih tersegel / belum dipakai.</li>
+          <li>Barang cacat / salah kirim: ongkos retur ditanggung {{ site.siteName }}.</li>
+          <li>Hubungi kami via WhatsApp sebelum melakukan pengembalian barang.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-pengiriman">
+      <div class="tab-content">
+        <h4>Estimasi Pengiriman</h4>
+        <p>Pengiriman dilakukan melalui ekspedisi terpercaya (JNE, J&amp;T, SiCepat, dsb). Estimasi tiba 1–5 hari kerja.</p>
+        <h4>Packaging</h4>
+        <p>Setiap produk dikemas dengan bubble wrap dan kardus tebal untuk keamanan selama pengiriman.</p>
+        <h4>Asuransi Pengiriman</h4>
+        <p>Kami menyarankan menggunakan asuransi pengiriman untuk produk bernilai tinggi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

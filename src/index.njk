@@ -1,0 +1,188 @@
+---
+layout: base.njk
+title: "Toko Laptop, CCTV & Peralatan Jaringan Terpercaya"
+description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat jaringan berkualitas. Harga bersaing, garansi resmi."
+---
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-img"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🛡️ Terpercaya Sejak {{ site.established }}</div>
+    <h1>{{ site.siteName }}: <span>Solusi Teknologi</span> Terpercaya</h1>
+    <p>Laptop, CCTV, dan perangkat jaringan berkualitas untuk kebutuhan Anda. Harga kompetitif, garansi resmi</p>
+    <div class="hero-btns">
+      <a href="/products/" class="btn-yellow">Lihat Katalog <i class="bi bi-arrow-right-short"></i></a>
+      <a href="https://wa.me/{{ site.waNumber }}" target="_blank" class="btn-ghost-white">
+        <i class="bi bi-whatsapp"></i> Konsultasi Gratis
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="hero-stat-num">{{ site.stats.products }}</div>
+        <div class="hero-stat-lbl">Produk Tersedia</div>
+      </div>
+      <div class="stat">
+        <div class="hero-stat-num">{{ site.stats.customers }}</div>
+        <div class="hero-stat-lbl">Pelanggan Puas</div>
+      </div>
+      <div class="stat">
+        <div class="hero-stat-num">{{ site.stats.years }}</div>
+        <div class="hero-stat-lbl">Pengalaman</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
+<!-- PRODUK -->
+<section id="produk" class="section">
+  <div class="wrap">
+    <div class="section-header">
+      <div class="section-label">Katalog Produk</div>
+      <h2 class="section-h2">Temukan Produk Terbaik Anda</h2>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:32px;">
+      <div class="filter-bar" id="homeFilterBar">
+        <button class="f-btn active" data-filter="all"><i class="bi bi-grid"></i> Semua</button>
+        <button class="f-btn" data-filter="laptop"><i class="bi bi-laptop"></i> Laptop</button>
+        <button class="f-btn" data-filter="cctv"><i class="bi bi-camera-video"></i> CCTV</button>
+        <button class="f-btn" data-filter="jaringan"><i class="bi bi-router"></i> Jaringan</button>
+      </div>
+      <a href="/products/" class="btn-see-all">
+        <i class="bi bi-arrow-right"></i> Lihat Semua Produk
+      </a>
+    </div>
+
+    <div class="prod-grid" id="prodGrid">
+      {% for product in collections.products | slice(0, 9) %}
+      <div class="prod-card home-prod-card observe-fade" data-cat="{{ product.data.kategori }}" style="animation-delay: {{ loop.index0 * 0.06 }}s">
+        <div class="prod-img" style="cursor:pointer" onclick="window.location='/products/{{ product.data.slug }}/'">
+          <img src="{{ product.data.img }}" alt="{{ product.data.title }}" loading="lazy">
+          <div class="prod-cat-badge {{ product.data.kategori }}">
+            <i class="bi {{ product.data.kategori | categoryIcon }}"></i>
+            {{ product.data.kategori | categoryLabel }}
+          </div>
+        </div>
+        <div class="prod-body">
+          <div class="prod-name" style="cursor:pointer" onclick="window.location='/products/{{ product.data.slug }}/'">
+            {{ product.data.title }}
+          </div>
+          <div class="prod-spec">{{ product.data.spec }}</div>
+          <div class="prod-price">{{ product.data.price | formatRupiah }}</div>
+          <a class="btn-detail-link" href="/products/{{ product.data.slug }}/">
+            <i class="bi bi-eye"></i> Lihat Detail
+          </a>
+          <div class="prod-actions">
+            <button class="btn-addcart"
+              data-id="{{ product.data.slug }}"
+              data-name="{{ product.data.title }}"
+              data-price="{{ product.data.price }}"
+              data-img="{{ product.data.img }}">
+              <i class="bi bi-bag-plus"></i> Keranjang
+            </button>
+            <a class="btn-wa-card" target="_blank"
+              href="https://wa.me/{{ site.waNumber }}?text={{ ('Halo, saya ingin info produk:\n*' + product.data.title + '*\nHarga: ' + (product.data.price | formatRupiah) + '\n\nTerima kasih.') | urlencode }}">
+              <i class="bi bi-whatsapp"></i> WA
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- LAYANAN -->
+<section id="layanan" class="layanan-section">
+  <div class="wrap">
+    <div class="layanan-grid">
+      <div class="layanan-item observe-fade">
+        <div class="layanan-icon"><i class="bi bi-shield-check"></i></div>
+        <div class="layanan-title">Garansi Resmi</div>
+        <div class="layanan-desc">Semua produk bergaransi resmi dari distributor atau pabrikan terpercaya.</div>
+      </div>
+      <div class="layanan-item observe-fade">
+        <div class="layanan-icon"><i class="bi bi-headset"></i></div>
+        <div class="layanan-title">Support 7 Hari</div>
+        <div class="layanan-desc">Tim kami siap membantu konsultasi teknis setiap hari mulai pukul 08–21.</div>
+      </div>
+      <div class="layanan-item observe-fade">
+        <div class="layanan-icon"><i class="bi bi-tools"></i></div>
+        <div class="layanan-title">Instalasi &amp; Setting</div>
+        <div class="layanan-desc">Layanan instalasi CCTV dan konfigurasi jaringan oleh teknisi berpengalaman.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak" class="section kontak-section">
+  <div class="wrap">
+    <div class="kontak-grid">
+      <div>
+        <div class="section-label">Hubungi Kami</div>
+        <h2 class="section-h2" style="margin-bottom:12px;">Ada yang bisa<br>kami bantu?</h2>
+        <p class="kontak-desc">Konsultasi produk, tanya harga, atau request penawaran khusus — tim kami siap melayani.</p>
+        <div class="kontak-list">
+          <div class="kontak-item observe-fade">
+            <div class="kontak-item-icon"><i class="bi bi-telephone-fill"></i></div>
+            <div class="kontak-item-text">
+              <small>Telepon / WhatsApp</small>
+              <span>{{ site.phone }}</span>
+            </div>
+          </div>
+          <div class="kontak-item observe-fade">
+            <div class="kontak-item-icon"><i class="bi bi-envelope-fill"></i></div>
+            <div class="kontak-item-text">
+              <small>Email</small>
+              <span>{{ site.email }}</span>
+            </div>
+          </div>
+          <div class="kontak-item observe-fade">
+            <div class="kontak-item-icon"><i class="bi bi-geo-alt-fill"></i></div>
+            <div class="kontak-item-text">
+              <small>Alamat</small>
+              <span>{{ site.address }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kontak-cta">
+        <a href="https://wa.me/{{ site.waNumber }}?text={{ 'Halo saya ingin konsultasi produk UNIQ CELL' | urlencode }}"
+           target="_blank" class="btn-wa-big-full observe-fade">
+          <i class="bi bi-whatsapp"></i>
+          <div>
+            <small>Klik untuk chat langsung</small>
+            <strong>Chat WhatsApp Sekarang</strong>
+          </div>
+        </a>
+        <a href="mailto:{{ site.email }}" class="btn-outline-navy observe-fade">
+          <i class="bi bi-envelope"></i> Kirim Email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Bind add-to-cart on home page
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.btn-addcart').forEach(b => {
+    b.addEventListener('click', () => {
+      addToCart(b.dataset.id, b.dataset.name, Number(b.dataset.price), b.dataset.img);
+    });
+  });
+});
+</script>
+{% endblock %}

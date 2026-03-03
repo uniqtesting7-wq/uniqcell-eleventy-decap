@@ -1,0 +1,134 @@
+# ============================================================
+# DECAP CMS CONFIG — UNIQ CELL
+# ============================================================
+# Backend: Netlify Identity / Git Gateway  
+# Untuk Vercel: gunakan backend "github" langsung
+# ============================================================
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME   # ← GANTI INI
+  branch: main
+  base_url: https://uniq-cctv-network.vercel.app   # ← URL deploy Anda
+
+# Jika pakai Netlify CMS Identity, ganti backend di atas dengan:
+# backend:
+#   name: git-gateway
+#   branch: main
+
+# Media uploads — simpan gambar di folder /src/images/products
+media_folder: "src/images/products"
+public_folder: "/images/products"
+
+# ── COLLECTIONS ──────────────────────────────────────────────
+collections:
+
+  # ── PRODUK ──
+  - name: "products"
+    label: "Produk"
+    label_singular: "Produk"
+    folder: "src/products"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "products/{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Judul Produk", name: "title", widget: "string", hint: "Nama produk lengkap" }
+      - { label: "Slug (URL)", name: "slug", widget: "string", hint: "URL-friendly, misal: lenovo-thinkpad-x1", pattern: ['^[a-z0-9-]+$', "Hanya huruf kecil, angka, dan strip"] }
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: "/products/{{slug}}/" }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "product-detail.njk" }
+      - label: "Kategori"
+        name: "kategori"
+        widget: "select"
+        options:
+          - { label: "💻 Laptop", value: "laptop" }
+          - { label: "📷 CCTV", value: "cctv" }
+          - { label: "🌐 Jaringan", value: "jaringan" }
+      - label: "Gambar Produk"
+        name: "img"
+        widget: "image"
+        allow_multiple: false
+        hint: "Upload gambar produk (jpg/png, min 800×600px)"
+        media_library:
+          config:
+            multiple: false
+      - { label: "Spesifikasi Singkat", name: "spec", widget: "string", hint: "Tampil di card produk. Contoh: Intel i7 · 16GB RAM · 512GB SSD" }
+      - { label: "Harga (Rupiah)", name: "price", widget: "number", value_type: "int", min: 1000, hint: "Angka saja tanpa titik/koma. Contoh: 18999000" }
+      - { label: "Urutan Tampil", name: "order", widget: "number", value_type: "int", default: 99, hint: "Angka kecil = tampil lebih awal" }
+      - { label: "Rating (1-5)", name: "rating", widget: "number", value_type: "float", min: 1, max: 5, step: 0.1, default: 4.8 }
+      - { label: "Jumlah Ulasan", name: "ulasan", widget: "number", value_type: "int", default: 0 }
+      - label: "Stok Tersedia"
+        name: "stok"
+        widget: "boolean"
+        default: true
+      - { label: "Deskripsi Singkat", name: "description", widget: "text", hint: "Tampil di SEO dan preview. Maks 160 karakter." }
+      - label: "Spesifikasi Detail"
+        name: "specs"
+        widget: "object"
+        collapsed: false
+        hint: "Isi sesuai kategori produk"
+        fields:
+          # LAPTOP fields
+          - { label: "Prosesor / Chip", name: "Prosesor", widget: "string", required: false }
+          - { label: "RAM", name: "RAM", widget: "string", required: false }
+          - { label: "Penyimpanan", name: "Penyimpanan", widget: "string", required: false }
+          - { label: "Layar", name: "Layar", widget: "string", required: false }
+          - { label: "GPU / Grafis", name: "GPU", widget: "string", required: false }
+          - { label: "Baterai", name: "Baterai", widget: "string", required: false }
+          - { label: "Sistem Operasi", name: "OS", widget: "string", required: false }
+          - { label: "Berat", name: "Berat", widget: "string", required: false }
+          # CCTV fields
+          - { label: "Resolusi", name: "Resolusi", widget: "string", required: false }
+          - { label: "Lensa", name: "Lensa", widget: "string", required: false }
+          - { label: "Night Vision", name: "Night Vision", widget: "string", required: false }
+          - { label: "Rating IP (weatherproof)", name: "Rating IP", widget: "string", required: false }
+          - { label: "Koneksi", name: "Koneksi", widget: "string", required: false }
+          - { label: "Kompresi Video", name: "Kompresi", widget: "string", required: false }
+          # JARINGAN fields
+          - { label: "Port / Interface", name: "Port", widget: "string", required: false }
+          - { label: "CPU", name: "CPU", widget: "string", required: false }
+          - { label: "RAM (Router)", name: "RAM Router", widget: "string", required: false }
+          - { label: "WiFi", name: "WiFi", widget: "string", required: false }
+          - { label: "Bandwidth", name: "Bandwidth", widget: "string", required: false }
+          # UMUM
+          - { label: "Garansi", name: "Garansi", widget: "string", required: false }
+      - label: "Deskripsi Lengkap (Markdown)"
+        name: "body"
+        widget: "markdown"
+        hint: "Konten detail produk — tampil di tab Deskripsi"
+
+  # ── PENGATURAN TOKO ──
+  - name: "settings"
+    label: "Pengaturan Toko"
+    editor:
+      preview: false
+    files:
+      - label: "Informasi Toko"
+        name: "site"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Nama Toko", name: "siteName", widget: "string" }
+          - { label: "Deskripsi Toko", name: "siteDesc", widget: "string" }
+          - { label: "Nomor WhatsApp", name: "waNumber", widget: "string", hint: "Format: 628xxx (tanpa + dan spasi)" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Alamat", name: "address", widget: "text" }
+          - { label: "Telepon (tampil)", name: "phone", widget: "string" }
+          - { label: "URL Website", name: "siteUrl", widget: "string" }
+          - { label: "Tahun Berdiri", name: "established", widget: "string" }
+          - label: "Statistik Hero"
+            name: "stats"
+            widget: "object"
+            fields:
+              - { label: "Jumlah Produk", name: "products", widget: "string", default: "500+" }
+              - { label: "Pelanggan Puas", name: "customers", widget: "string", default: "3.000+" }
+              - { label: "Pengalaman", name: "years", widget: "string", default: "5 Thn" }
+          - label: "Media Sosial"
+            name: "socials"
+            widget: "object"
+            fields:
+              - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
+              - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+              - { label: "TikTok URL", name: "tiktok", widget: "string", required: false }
+              - { label: "WhatsApp URL", name: "whatsapp", widget: "string" }
