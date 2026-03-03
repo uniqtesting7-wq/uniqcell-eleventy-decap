@@ -23,8 +23,6 @@ specs:
   Berat: "1.24 kg"
   Garansi: "1 Tahun Dell ProSupport"
 ---
-layout: product-detail.njk
-permalink: /products/dell-xps-13-plus/
 
 Dell XPS 13 Plus hadir dengan desain tanpa kompromi — layar OLED yang memukau, keyboard haptic tanpa gap, dan trackpad yang mulus. Ini bukan sekadar laptop, ini pernyataan gaya.
 

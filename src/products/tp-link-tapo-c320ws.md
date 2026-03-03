@@ -22,8 +22,6 @@ specs:
   App: "Tapo (iOS & Android)"
   Garansi: "2 Tahun TP-Link"
 ---
-layout: product-detail.njk
-permalink: /products/tp-link-tapo-c320ws/
 
 TP-Link Tapo C320WS adalah pilihan terbaik untuk keamanan rumah yang smart dan terjangkau. Pasang, sambungkan ke WiFi, dan monitor dari mana saja.
 

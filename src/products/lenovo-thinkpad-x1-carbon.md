@@ -23,8 +23,6 @@ specs:
   Berat: "1.12 kg"
   Garansi: "3 Tahun On-site"
 ---
-layout: product-detail.njk
-permalink: /products/lenovo-thinkpad-x1-carbon/
 
 ThinkPad X1 Carbon Gen 11 adalah puncak dari lini bisnis Lenovo — ringan, tahan lama, dan berperforma tinggi. Dengan desain ikonik yang telah disempurnakan selama lebih dari satu dekade, laptop ini menjadi pilihan utama para profesional.
 

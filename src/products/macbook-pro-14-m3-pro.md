@@ -23,8 +23,6 @@ specs:
   Berat: "1.61 kg"
   Garansi: "1 Tahun Apple Care"
 ---
-layout: product-detail.njk
-permalink: /products/macbook-pro-14-m3-pro/
 
 MacBook Pro dengan chip M3 Pro membawa era baru performa dan efisiensi. Chip revolusioner Apple ini menghadirkan kecepatan CPU dan GPU yang luar biasa sambil mempertahankan daya tahan baterai yang mengesankan.
 

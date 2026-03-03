@@ -22,8 +22,6 @@ specs:
   "Frame Rate": "20 fps @ 4MP"
   Garansi: "2 Tahun Hikvision"
 ---
-layout: product-detail.njk
-permalink: /products/hikvision-4mp-dome-ip67/
 
 Hikvision adalah merek CCTV nomor 1 dunia. Kamera Dome 4MP ini memberikan gambar jernih siang dan malam dengan teknologi IR canggih.
 

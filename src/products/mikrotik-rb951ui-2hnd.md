@@ -22,8 +22,6 @@ specs:
   OS: "RouterOS Level 4"
   Garansi: "1 Tahun MikroTik"
 ---
-layout: product-detail.njk
-permalink: /products/mikrotik-rb951ui-2hnd/
 
 MikroTik RB951Ui-2HnD adalah router favorit para admin jaringan Indonesia. Dengan RouterOS yang powerful, Anda bisa mengontrol bandwidth, membuat hotspot, VPN, dan jauh lebih banyak.
 

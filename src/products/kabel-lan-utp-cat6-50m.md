@@ -22,8 +22,6 @@ specs:
   Warna: "Abu-abu"
   Garansi: "1 Tahun"
 ---
-layout: product-detail.njk
-permalink: /products/kabel-lan-utp-cat6-50m/
 
 Kabel LAN Cat6 pure copper terbaik untuk instalasi jaringan yang handal. Bukan CCA (Copper Clad Aluminum) — full copper untuk performa maksimal dan ketahanan jangka panjang.
 

@@ -22,8 +22,6 @@ specs:
   Kompresi: "H.265+ / Smart H.265+"
   Garansi: "2 Tahun Dahua"
 ---
-layout: product-detail.njk
-permalink: /products/dahua-8mp-ptz-pro/
 
 Dahua PTZ 8MP adalah solusi pengawasan area luas dengan kemampuan pan-tilt-zoom yang presisi dan auto-tracking berbasis AI yang canggih.
 

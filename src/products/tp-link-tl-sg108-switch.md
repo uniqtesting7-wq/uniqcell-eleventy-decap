@@ -22,8 +22,6 @@ specs:
   Standar: "IEEE 802.3, 802.3u, 802.3ab"
   Garansi: "3 Tahun TP-Link"
 ---
-layout: product-detail.njk
-permalink: /products/tp-link-tl-sg108-switch/
 
 Switch Gigabit 8 port yang andal dan mudah digunakan. Colok dan langsung jalan — tidak perlu konfigurasi apa pun. Casing metal yang kokoh membuatnya awet untuk penggunaan 24/7.
 
