@@ -64,7 +64,7 @@ description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat
       {% set p = product.data %}
       <div class="prod-card home-prod-card" data-cat="{{ p.kategori }}">
         <div class="prod-img" onclick="window.location='/products/{{ p.slug }}/'">
-          <img src="{{ p.img }}" alt="{{ p.title }}" loading="lazy">
+          <img src="{{ product.data.img }}" alt="{{ p.title }}" loading="lazy">
           <div class="prod-cat-badge {{ p.kategori }}">
             <i class="bi {{ p.kategori | categoryIcon }}"></i>
             {{ p.kategori | categoryLabel }}
@@ -82,7 +82,7 @@ description: "UNIQ CELL menyediakan laptop terbaru, CCTV keamanan, dan perangkat
               data-id="{{ p.slug }}"
               data-name="{{ p.title }}"
               data-price="{{ p.price }}"
-              data-img="{{ p.img }}">
+              data-img="{{ product.data.img }}">
               <i class="bi bi-bag-plus"></i> Keranjang
             </button>
             <a class="btn-wa-card" target="_blank"
